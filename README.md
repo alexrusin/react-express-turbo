@@ -1,21 +1,15 @@
-# Turborepo kitchen sink starter
+# React Express Turbo
 
-This is an official starter Turborepo with multiple meta-frameworks all working in harmony and sharing packages.
-
-## What's inside?
-
-This Turborepo includes the following packages and apps:
+This a starter Turborepo with React frontend and Express backend.
 
 ### Apps and Packages
 
-- `api`: an [Express](https://expressjs.com/) server
-- `storefront`: a [Next.js](https://nextjs.org/) app
-- `admin`: a [Vite](https://vitejs.dev/) single page app
-- `blog`: a [Remix](https://remix.run/) blog
+- `backend`: an [Express](https://expressjs.com/) server
+- `frontend`: a [Vite](https://vitejs.dev/) single page app
 - `logger`: isomorphic logger (a small wrapper around console.log)
 - `ui`: a dummy React UI library (which contains a single `<CounterButton>` component)
 - `scripts`: Jest and ESLint configurations
-- `tsconfig`: tsconfig.json;s used throughout the monorepo
+- `tsconfig`: tsconfig.json is used throughout the monorepo
 
 Each package and app is 100% [TypeScript](https://www.typescriptlang.org/).
 
@@ -28,13 +22,21 @@ This Turborepo has some additional tools already setup for you:
 - [Jest](https://jestjs.io) test runner for all things JavaScript
 - [Prettier](https://prettier.io) for code formatting
 
-## Using this example
+## Using this repo
 
 Run the following command:
 
 ```sh
-npx degit vercel/turbo/examples/kitchen-sink kitchen-sink
-cd kitchen-sink
+git clone https://github.com/alexrusin/react-express-turbo.git
+cd react-express-turbo
 pnpm install
-git init . && git add . && git commit -m "Init"
+pnpm build
+pnpm dev
+```
+
+## Testing and linting
+
+```sh
+pnpm lint
+pnpm test
 ```
