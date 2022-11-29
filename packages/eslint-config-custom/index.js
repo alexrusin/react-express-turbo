@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ["next", "turbo", "prettier"],
+  extends: ["turbo", "prettier"],
   settings: {
     react: {
       version: "detect",
