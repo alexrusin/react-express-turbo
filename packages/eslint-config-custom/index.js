@@ -1,8 +1,11 @@
 module.exports = {
-  extends: ["turbo", "prettier"],
+  extends: ["plugin:@typescript-eslint/recommended", "turbo", "prettier"],
   settings: {
     react: {
       version: "detect",
     },
+  },
+  rules: {
+    "@typescript-eslint/ban-ts-comment": "off",
   },
 };
