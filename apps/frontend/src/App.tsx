@@ -1,22 +1,14 @@
-import * as React from "react";
-import "./App.css";
-import { CounterButton, NewTabLink } from "ui";
+import { BrowserRouter } from "react-router-dom";
+import Routes from "./Routes";
 
-function App() {
+export default function App() {
+  const pages = import.meta.glob("./pages/**/!(*.test.[jt]sx)*.([jt]sx)", {
+    eager: true,
+  });
+
   return (
-    <div className="container">
-      <h1 className="title">
-        Admin <br />
-        <span>Kitchen Sink</span>
-      </h1>
-      <CounterButton />
-      <p className="description">
-        Built With{" "}
-        <NewTabLink href="https://turbo.build/repo">Turborepo</NewTabLink> +{" "}
-        <NewTabLink href="https://vitejs.dev/">Vite</NewTabLink>
-      </p>
-    </div>
+    <BrowserRouter>
+      <Routes pages={pages} />
+    </BrowserRouter>
   );
 }
-
-export default App;
