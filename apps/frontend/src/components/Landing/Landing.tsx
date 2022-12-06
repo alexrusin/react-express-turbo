@@ -1,4 +1,5 @@
 import {
+  Container,
   Title,
   SimpleGrid,
   Text,
@@ -71,7 +72,7 @@ export default function Landing() {
   ));
 
   return (
-    <div className={classes.wrapper}>
+    <Container className={classes.wrapper}>
       <Grid gutter={80}>
         <Col span={12} md={5}>
           <Title className={classes.title} order={2}>
@@ -104,6 +105,6 @@ export default function Landing() {
           </SimpleGrid>
         </Col>
       </Grid>
-    </div>
+    </Container>
   );
 }
