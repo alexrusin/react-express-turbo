@@ -1,22 +1,33 @@
-import { json, urlencoded } from "body-parser";
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 
+function sleep(ms: number): Promise<string> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("done");
+    }, ms);
+  });
+}
+
 export const createServer = () => {
   const app = express();
+
   app
     .disable("x-powered-by")
     .use(morgan("dev"))
-    .use(urlencoded({ extended: true }))
-    .use(json())
-    .use(cors())
-    .get("/message/:name", (req, res) => {
-      return res.json({ message: `hello ${req.params.name}` });
-    })
-    .get("/healthz", (req, res) => {
-      return res.json({ ok: true });
-    });
+    .use(express.urlencoded({ extended: true }))
+    .use(express.json())
+    .use(cors());
+
+  app.get("/message/:name", async (req, res) => {
+    // await sleep(3000);
+    return res.json({ message: `Welcome ${req.params.name}` });
+  });
+
+  app.get("/healthz", (req, res) => {
+    return res.json({ ok: true });
+  });
 
   return app;
 };
