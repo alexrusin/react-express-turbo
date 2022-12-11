@@ -25,6 +25,13 @@ export const createServer = () => {
     return res.json({ message: `Welcome ${req.params.name}` });
   });
 
+  app.get("/api/user", (req, res) => {
+    res.json({
+      id: 1,
+      name: "John",
+    });
+  });
+
   app.get("/healthz", (req, res) => {
     return res.json({ ok: true });
   });

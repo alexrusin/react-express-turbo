@@ -1,22 +1,8 @@
 import { Group, Button, Text, Flex } from "@mantine/core";
-import { useQuery } from "react-query";
-import { Loader } from "@mantine/core";
-import apiClient from "../../services/api-client";
+import useUserStore from "../../store/user-store";
 
 export default function HeaderContent() {
-  const { isLoading, error, data } = useQuery("welcomeMessage", () =>
-    apiClient.get("/message/Alex").then((response) => response.data)
-  );
-
-  function displayMessage() {
-    if (isLoading) {
-      return <Loader variant="dots" />;
-    }
-    if (error) {
-      return <Text color="red">Sorry, there was an error</Text>;
-    }
-    return <Text>{data.message}</Text>;
-  }
+  const userName = useUserStore((state) => state.name);
 
   return (
     <Flex
@@ -29,7 +15,7 @@ export default function HeaderContent() {
     >
       <Text>Application Header</Text>
       <Group position="right" spacing="lg">
-        {displayMessage()}
+        <Text>{userName}</Text>
         <Button variant="outline">Logout</Button>
       </Group>
     </Flex>
