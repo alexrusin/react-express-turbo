@@ -1,16 +1,24 @@
 {
     "name": "frontend-cookies",
-    "license": "MIT",
+    "version": "0.0.3",
+    "description": "Helper for setting, getting and deleting cookies on the front end",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
     "files": [
         "dist/**"
     ],
+    "keywords": [
+      "cookies",
+      "browser",
+      "frontend"
+    ],
+    "author": "Alex Rusin",
+    "license": "ISC",
     "scripts": {
-        "build": "tsup src/index.ts --format cjs --dts",
-        "clean": "rm -rf dist",
-        "dev": "tsup src/index.ts --format cjs --dts",
+        "build": "tsup src/index.ts --format esm,cjs --dts",
+        "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+        "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
         "lint": "TIMING=1 eslint \"src/**/*.ts*\""
       },
     "devDependencies": {

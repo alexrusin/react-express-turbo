@@ -1,22 +1,34 @@
-export function setCookie(name: string, value: string, days: number) {
-  let expires = "";
-  if (days) {
-    var date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    expires = "; expires=" + date.toUTCString();
+import { getCookie, setCookie, eraseCookie } from "./cookies";
+
+function setTokensFromUrlHash(tokens: Array<string>, expiresDays = 7): void {
+  // https://localhost:3001/dashboard#access_token=hello&id_token=hi
+  const hash = location.hash;
+  let canRemoveHash = false;
+
+  if (hash) {
+    const hashArray = hash.replace("#", "").split("&");
+    tokens.forEach((tokenName) => {
+      hashArray.forEach((item) => {
+        const parts = item.split("=");
+        if (parts[0] === tokenName) {
+          canRemoveHash = true;
+          setCookie(tokenName, parts[1], expiresDays);
+        }
+      });
+    });
   }
-  document.cookie = name + "=" + (value || "") + expires + "; path=/";
-}
-export function getCookie(name: string) {
-  var nameEQ = name + "=";
-  var ca = document.cookie.split(";");
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == " ") c = c.substring(1, c.length);
-    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+
+  if (canRemoveHash) {
+    history.replaceState("", "", location.pathname);
   }
-  return null;
 }
-export function eraseCookie(name: string) {
-  document.cookie = name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+
+export { setCookie, getCookie, eraseCookie };
+
+export function getTokens(
+  tokens: Array<string>,
+  expiresDays = 7
+): Array<string> {
+  setTokensFromUrlHash(tokens, expiresDays);
+  return tokens.map((tokenName) => getCookie(tokenName));
 }

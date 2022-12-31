@@ -6,7 +6,8 @@
     "dev": "dotenv -- turbo run dev --no-cache --parallel --continue",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "publish-packages": "turbo run build lint && changeset version && changeset publish"
   },
   "devDependencies": {
     "prettier": "^2.7.1",
@@ -14,6 +15,7 @@
   },
   "packageManager": "pnpm@7.15.0",
   "dependencies": {
+    "@changesets/cli": "^2.25.2",
     "dotenv-cli": "^6.0.0"
   }
 }
