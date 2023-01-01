@@ -2,13 +2,13 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 
-function sleep(ms: number): Promise<string> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve("done");
-    }, ms);
-  });
-}
+// function sleep(ms: number): Promise<string> {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve("done");
+//     }, ms);
+//   });
+// }
 
 export const createServer = () => {
   const app = express();
