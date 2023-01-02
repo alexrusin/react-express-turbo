@@ -22,14 +22,18 @@ export const createServer = () => {
 
   app.get("/message/:name", async (req, res) => {
     // await sleep(3000);
+    // return res.status(401).send("Unauthorized");
     return res.json({ message: `Welcome ${req.params.name}` });
   });
 
   app.get("/api/user", (req, res) => {
-    res.json({
-      id: 1,
-      name: "John",
-    });
+    if (req.headers.authorization) {
+      return res.json({
+        id: 1,
+        name: "John",
+      });
+    }
+    res.status(404).send("Not found");
   });
 
   app.get("/healthz", (req, res) => {

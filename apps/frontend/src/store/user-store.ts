@@ -1,6 +1,5 @@
 import create from "zustand";
 import { devtools } from "zustand/middleware";
-import apiClient from "../services/api-client";
 
 interface UserState {
   id: number | undefined;
@@ -23,16 +22,5 @@ const useUserStore = create<UserState>()(
     }
   )
 );
-
-apiClient
-  .get("/api/user")
-  .then((response) => {
-    const user = response.data;
-    user.loading = false;
-    useUserStore.setState(user);
-  })
-  .catch((error) => {
-    useUserStore.setState({ loading: false });
-  });
 
 export default useUserStore;
