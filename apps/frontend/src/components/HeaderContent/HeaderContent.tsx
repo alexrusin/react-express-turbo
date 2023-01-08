@@ -1,7 +1,7 @@
 import { Group, Button, Text, Flex } from "@mantine/core";
 import useUserStore from "../../store/user-store";
 import { eraseCookie } from "frontend-cookies";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import client from "../../services/api-client";
 
 export default function HeaderContent() {
@@ -24,7 +24,9 @@ export default function HeaderContent() {
       direction="row"
       wrap="wrap"
     >
-      <Text>Application Header</Text>
+      <Text>
+        <Link to="/">Application Header</Link>
+      </Text>
       <Group position="right" spacing="lg">
         <Text>{userName}</Text>
         <Button variant="outline" onClick={logout}>
