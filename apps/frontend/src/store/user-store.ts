@@ -2,7 +2,7 @@ import create from "zustand";
 import { devtools } from "zustand/middleware";
 
 interface UserState {
-  id: number | undefined;
+  id: string | undefined;
   name: string | undefined;
   loading: boolean;
   deleteUser: () => void;

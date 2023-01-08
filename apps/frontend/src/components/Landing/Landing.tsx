@@ -16,6 +16,7 @@ import {
 } from "@tabler/icons";
 import { useNavigate } from "react-router-dom";
 import useStyles from "./useStyles";
+import useUserStore from "../../store/user-store";
 
 const features = [
   {
@@ -47,9 +48,14 @@ const features = [
 export default function Landing() {
   const { classes } = useStyles();
   const navigate = useNavigate();
+  const userId = useUserStore((store) => store.id);
 
   function goToDashboard() {
-    navigate("/dashboard");
+    if (userId) {
+      navigate("/dashboard");
+    } else {
+      window.location = import.meta.env.VITE_COGNITO_UI_URL;
+    }
   }
 
   const items = features.map((feature) => (
@@ -92,7 +98,7 @@ export default function Landing() {
             mt="xl"
             onClick={goToDashboard}
           >
-            Go to Dashboard
+            {userId ? "Go to Dashboard" : "Login / Sign In"}
           </Button>
         </Col>
         <Col span={12} md={7}>
