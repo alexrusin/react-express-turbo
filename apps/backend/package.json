@@ -14,6 +14,7 @@
     "preset": "jest-presets/jest/node"
   },
   "dependencies": {
+    "aws-jwt-verify": "^3.4.0",
     "axios": "^1.2.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
